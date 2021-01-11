@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { UserSchema } from '../models/userModel'
 
-const User = mongoose.model(('User', UserSchema))
+const User = mongoose.model('User', UserSchema)
 
 export const loginRequired = (req, res, next) => {
     if(req.user) {
@@ -34,7 +34,7 @@ export const login = (req, res) => {
             if(!user.comparePassword(req.body.password, user.hashPassword)) {
                 res.status(401).json({message: 'Authenticaction failed. Wrong password'})
             } else {
-                return. res.json({token: jwt.sign({email: user.email, username: user.username, _id: user.id }, 'RESTFULAPIs')})
+                return res.json({token: jwt.sign({email: user.email, username: user.username, _id: user.id }, 'RESTFULAPIs')})
             }
         }
     })
